@@ -41,4 +41,4 @@ To run this command (after defining the HTML as desribed above):
 Examples
 --------
 
-See ScraperMoreFasterTester.php for example usage.
+See smf_tester.php for example usage.
