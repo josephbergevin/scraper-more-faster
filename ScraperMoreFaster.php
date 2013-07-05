@@ -35,7 +35,12 @@ class ScraperMoreFaster {
 	public function loadDom() {
 		libxml_use_internal_errors(true);
 		$this->domDoc = new DomDocument;
-		$this->domDoc->loadHTML($this->html);
+		if ( $this->html !== '' ) {
+			$this->domDoc->loadHTML($this->html);
+			return true;
+		} else {
+			return false;
+		}
 	} // end of loadDom function
 
 	/*
@@ -939,6 +944,8 @@ class ScraperMoreFaster {
 	 
 	 
 		// Split the URL into components.
+		$parts = array();
+
 		if ( !preg_match( '!' . $xurl . '!', $url, $m ) )
 			return FALSE;
 	 
