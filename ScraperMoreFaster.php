@@ -673,6 +673,15 @@ class ScraperMoreFaster {
 		return $tags;
 	}
 
+	/***********
+	Method: 	getExternalSites
+	Expects: 	$expected_var
+	Returns:	$return_var
+	Purpose: 	
+	*/
+	public function getExternalSites() {
+		
+	} // end of getExternalSites method
 	
 	/*
 	Function: 	findATagNode

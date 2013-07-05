@@ -1,7 +1,5 @@
 <?php 
 
-error_reporting(E_All);
-
 require_once "lib/ScraperMoreFaster.php";
 
 $url = "http://www.yahoo.com/";
@@ -15,7 +13,7 @@ $smf->file_get_html($url);
 
 $plain_text = $smf->getPlainText();
 
-echo "<p>Plain Text of this Page: </p>";
+echo "<h2>Plain Text of this Page: </h2>";
 echo "<p>$plain_text</p>";
 
 
@@ -38,7 +36,7 @@ $webPageInfo['urlsList'] 		= $smf->urlsList;
 echo "<pre>";
 
 foreach ( $webPageInfo as $list_name => $arrayList ) {
-	echo "<p>$list_name: -----------------------------------------------</p>";
+	echo "<h2>$list_name: -----------------------------------------------</h2>";
 	print_r($arrayList);
 }
 
@@ -46,4 +44,3 @@ echo "</pre>";
 
 // playground.dev/ScraperMoreFaster/smf_tester.php
 
-?>
