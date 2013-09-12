@@ -1,7 +1,7 @@
 {
 	"name": "josephbergevin/ScraperMoreFaster",
-	"description": "ScraperMoreFaster for scraping a page",
-	"type": "php library",
+	"description": "A PHP Web Scraper - Designed for Speed",
+	"type": "library",
 	"keywords": ["scraper", "scraping", "php", "website"],
 	"homepage": "https://github.com/josephbergevin/ScraperMoreFaster",
 	"license": "MIT",
