@@ -220,7 +220,7 @@ class ScraperMoreFaster {
 	Returns: 	Title as string.
 	*/
 	public function getTitleTag() {
-		$title_tag_array = false;
+		$title_tag_array = array();
 		
 		$found = $this->domDoc->getElementsByTagName("title");
 		if ( $found->length > 0 ) {
