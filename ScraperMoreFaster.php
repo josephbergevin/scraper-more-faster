@@ -73,23 +73,49 @@ class ScraperMoreFaster {
 	Returns:	$
 	Purpose: 	
 	*/
-	public function getRedirectPath() {
+	public function getRedirectPath($url = null) {
+		if ( $url == null ) {
+			$redirect_url = $this->current_url;
+		} else {
+			$redirect_url = $url;
+		}
+
 		//get the header in key/value format
-		$this->response_header = get_headers($this->current_url);
+		$this->response_header = get_headers($redirect_url);
 		$responseHeader = $this->parseResponseHeader();
 		
 		if ( $responseHeader['status'][0] < 300 ) {
 			return false;
 		}
 
-		$status_count = 0;
-		$redirectPath = array();
-		$redirectPath[$this->current_url] = 
+		/*
+		$redirectPath[$redirect_url] = 
 			$responseHeader['status'][$status_count++];
 		
-		foreach ( $responseHeader['location'] as $location ) {
-			$redirectPath[$location] = 
-				$responseHeader['status'][$status_count++];
+		if ( isset($responseHeader['location']) ) {
+			foreach ( $responseHeader['location'] as $location ) {
+				$redirectPath[$location] = 
+					$responseHeader['status'][$status_count++];
+			}
+		}*/
+
+		$status_count = 0;
+		$redirectPath = array();
+
+		if ( isset($responseHeader['location']) ) {
+			$dest_url = 
+				$responseHeader['location'][count($responseHeader['location']) - 1];
+			foreach ( $responseHeader['location'] as $to_url ) {
+				$redirectPath[] = [
+					'dest_url' => $dest_url,
+					'from_url' => $redirect_url,
+					'to_url' => $to_url,
+					'status' => $responseHeader['status'][$status_count++]
+				];
+				$redirect_url = $to_url;
+			}
+		} else {
+			return false;
 		}
 
 		return $redirectPath;
