@@ -312,10 +312,7 @@ class ScraperMoreFaster {
 			if ( $href == "" || substr($href, 0, 4) == "http" ) {
 				$href_rebuilt = $href;
 			} else {
-				CakeLog::write('smf', "relative_url: |$href");
 				$href_rebuilt = $this->rebuildUrl($href);
-				CakeLog::write('smf', "rebuilt_url: |$href_rebuilt");
-				CakeLog::write('smf', "this->current_directory: $this->current_directory");
 			}
 			
 			if ( $href_rebuilt !== "" ) {
