@@ -88,17 +88,6 @@ class ScraperMoreFaster {
 			return false;
 		}
 
-		/*
-		$redirectPath[$redirect_url] = 
-			$responseHeader['status'][$status_count++];
-		
-		if ( isset($responseHeader['location']) ) {
-			foreach ( $responseHeader['location'] as $location ) {
-				$redirectPath[$location] = 
-					$responseHeader['status'][$status_count++];
-			}
-		}*/
-
 		$status_count = 0;
 		$redirectPath = array();
 
@@ -319,11 +308,14 @@ class ScraperMoreFaster {
 			$tag_code = $this->domDoc->saveHTML($tag);
 			// $img_tag = $this->getImgTagFromNode($tag_code);
 			$img_tag = $this->getImgTagFromNode($tag);
-			$href = $tag->getAttribute('href');
+			$href = trim($tag->getAttribute('href'));
 			if ( $href == "" || substr($href, 0, 4) == "http" ) {
 				$href_rebuilt = $href;
 			} else {
+				CakeLog::write('smf', "relative_url: |$href");
 				$href_rebuilt = $this->rebuildUrl($href);
+				CakeLog::write('smf', "rebuilt_url: |$href_rebuilt");
+				CakeLog::write('smf', "this->current_directory: $this->current_directory");
 			}
 			
 			if ( $href_rebuilt !== "" ) {
